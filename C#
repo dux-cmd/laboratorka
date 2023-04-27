@@ -1,0 +1,133 @@
+using System;
+
+namespace UniversityEnum
+{
+    class Program
+    {
+        enum University
+        {
+            UKR1,
+            UKR2,
+            UKR3,
+            UKR4,
+            USA1,
+            USA2,
+            USA3,
+            USA4
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("List of Universities:");
+            Console.WriteLine("{0} - University of Lviv", (int)University.UKR1);
+            Console.WriteLine("{0} - Taras Shevchenko National University of Kyiv", (int)University.UKR2);
+            Console.WriteLine("{0} - National Technical University of Ukraine \"Igor Sikorsky Kyiv Polytechnic Institute\"", (int)University.UKR3);
+            Console.WriteLine("{0} - Ivan Franko National University of Lviv", (int)University.UKR4);
+            Console.WriteLine("{0} - Harvard University", (int)University.USA1);
+            Console.WriteLine("{0} - Massachusetts Institute of Technology (MIT)", (int)University.USA2);
+            Console.WriteLine("{0} - Stanford University", (int)University.USA3);
+            Console.WriteLine("{0} - California Institute of Technology (Caltech)", (int)University.USA4);
+
+            Console.Write("\nEnter the numbers of universities (separated by commas): ");
+            string input = Console.ReadLine();
+            string[] numbers = input.Split(',');
+
+            Console.WriteLine("\nSelected universities from Ukraine:");
+            foreach (string number in numbers)
+            {
+                int parsedNumber;
+                if (int.TryParse(number, out parsedNumber))
+                {
+                    if (Enum.IsDefined(typeof(University), parsedNumber))
+                    {
+                        University university = (University)parsedNumber;
+                        if (university == University.UKR1 || university == University.UKR2 || university == University.UKR3 || university == University.UKR4)
+                        {
+                            Console.WriteLine("- {0}", university);
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("\nSelected universities from USA:");
+            foreach (string number in numbers)
+            {
+                int parsedNumber;
+                if (int.TryParse(number, out parsedNumber))
+                {
+                    if (Enum.IsDefined(typeof(University), parsedNumber))
+                    {
+                        University university = (University)parsedNumber;
+                        if (university == University.USA1 || university == University.USA2 || university == University.USA3 || university == University.USA4)
+                        {
+                            Console.WriteLine("- {0}", university);
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("\nAuthor: Мангер");
+            Console.ReadKey();
+        }
+    }
+}
+
+//Second code
+using System;
+class Program
+{
+static void Main(string[] args)
+{
+string text = "((()))()((()))";
+if (CheckParentheses(text))
+{
+Console.WriteLine("Дужки розставлені правильно.");
+}
+else
+{
+Console.WriteLine("Дужки розставлені НЕправильно.");
+}
+}
+static bool CheckParentheses(string text)
+{
+int count = 0;
+foreach (char c in text)
+{
+if (c == '(')
+{
+count++;
+}
+else if (c == ')')
+{
+count--;
+if (count < 0)
+{
+return false;
+}
+}
+}
+return count == 0;
+}
+}
+//third code
+using System;
+namespace Lab
+{
+class Program
+{
+static void Main(string[] args)
+{
+double sum = 0;
+for (int i = 0; i < 10; ++i)
+{
+Console.WriteLine(i + "th element: " + Calculate(i));
+sum += Calculate(i);
+}
+Console.WriteLine("\nA sum of the first ten elements: " + sum);
+}
+static double Calculate(int n)
+{
+return Math.Pow(-1, n) * (5 * (n + 1) * Math.Pow(n - 1, 4)) / (2 + (n + 1) * (n - 1));
+}
+}
+}
